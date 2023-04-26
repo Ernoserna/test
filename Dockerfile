@@ -1,4 +1,7 @@
-FROM ubuntu:20.04
-RUN  apt update && apt install -y default-jre && apt install -y wget && wget https://get.jenkins.io/war/2.395/jenkins.war && apt autoremove
-EXPOSE 9091
-CMD java -jar jenkins.war --httpPort=9091
+FROM bzcode/nodejs16
+WORKDIR /usr/src/
+COPY  node-devops-course/ .
+#RUN npm install && npm run build 
+RUN npm install
+EXPOSE 4000
+CMD ["node", "server.js"]
