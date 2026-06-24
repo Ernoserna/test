@@ -2,10 +2,14 @@ name: Staging Workflow
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - staging
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    if: github.ref_name == 'staging'
 
     steps:
       - name: Mostrar información
