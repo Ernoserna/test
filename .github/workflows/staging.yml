@@ -2,23 +2,20 @@ name: Staging Workflow
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - staging
 
 jobs:
-  test:
+  staging:
     runs-on: ubuntu-latest
-    if: github.ref_name == 'staging'
+    if: github.ref == 'refs/heads/staging'
 
     steps:
-      - name: Mostrar información
-        run: |
-          echo "Hola desde staging"
-          echo "Rama: ${{ github.ref_name }}"
-
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Listar archivos
+      - name: Show staging info
+        run: |
+          echo "Hola desde staging"
+          echo "Branch: ${{ github.ref_name }}"
+
+      - name: List files
         run: ls -la
