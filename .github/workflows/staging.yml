@@ -1,0 +1,21 @@
+name: Staging Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/staging'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show staging info
+        run: |
+          echo "Hola desde staging"
+          echo "Branch: ${{ github.ref_name }}"
+
+      - name: List files
+        run: ls -la
